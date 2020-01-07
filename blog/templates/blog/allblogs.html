@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	{% load static %}
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 	<meta content="" name="description">
 	<meta content="Mark Otto, Jacob Thornton, and Bootstrap contributors" name="author">
 	<meta content="Jekyll v3.8.6" name="generator">
-	<title>Album example · Bootstrap</title>
+	<title>Steven's Blog</title>
 	<link href="https://getbootstrap.com/docs/4.4/examples/album/" rel="canonical"><!-- Bootstrap core CSS -->
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"><!-- Favicons -->
 	<link href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
@@ -35,14 +36,19 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Steven Stensager</a> <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNavAltMarkup" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav ml-auto">
-					<a class="nav-item nav-link" href="#">Twitter</a> <a class="nav-item nav-link" href="#">Resume</a> <a class="nav-item nav-link active" href="#">Blog</a>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href="{% url 'home' %}">Steven Stensager</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav ml-auto">
+						<a class="nav-item nav-link" href="https://google.com">Twitter</a>
+						<a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+						<a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
+					</div>
 				</div>
-			</div>
-		</nav>
+			</nav>
 	</header>
 	<main role="main">
 		<div class="container">
@@ -52,7 +58,7 @@
 			<hr />
 
 			{% for blog in blogs.all %}
-				<a href=""><h3>{{ blog.title }}</h3></a>
+				<a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
 				{{ blog.pub_date_pretty }}<br />
 				<img class="img-fluid" src="{{ blog.image.url }}" width = 200 height = 200 />
 				<br />
