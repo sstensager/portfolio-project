@@ -5,22 +5,15 @@ from django.db import models
 class Blog(models.Model):
 	image = models.ImageField(upload_to='images/')
 	title = models.CharField(max_length=200)
-	pub_date = models.DateField()
+	pub_date = models.DateTimeField()
 	body = models.CharField(max_length=1000)
 
+	def __str__(self):
+		return self.title
 
+	def summary(self):
+		return self.body[:100]
 
-# title
-#  pub_date
-#  body
-#  image
+	def pub_date_pretty(self):
+		return self.pub_date.strftime('%b %e %Y')
 
-# Create a blog models
-
-# Add the blog app to the settings
-
-# Create a migration
-
-# migrate
-
-# add to the admin
